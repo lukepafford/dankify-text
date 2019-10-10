@@ -38,7 +38,24 @@
 	const dankify = (text) => {
 		let dankText = '';
 		dankText += '- ';
-		dankText += text.toUpperCase().replace(/\s+/g, ' - ');
+
+		let whitespaceCount = 0
+		for (const char of text) {
+			// For each character, it should be capitalized
+			// and have a space appended to it
+			if (/\w/.test(char)) {
+				whitespaceCount = 0;
+				dankText += `${char.toUpperCase()} `;
+			}
+
+			// For each space, we need a to put a dash in front
+			if (/\s/.test(char) && whitespaceCount === 0) {
+				whitespaceCount += 1
+				dankText += '- ';
+			}
+		}
+
+		//dankText += text.toUpperCase().replace(/\s+/g, ' - ');
 		dankText += ' -';
 		return dankText;
 	}
