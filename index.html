@@ -38,7 +38,7 @@
 	const dankify = (text) => {
 		let dankText = '';
 		dankText += '- ';
-		dankText += text.toUpperCase().replace(/\s/g, ' - ');
+		dankText += text.toUpperCase().replace(/\s+/g, ' - ');
 		dankText += ' -';
 		return dankText;
 	}
