@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dankify Text</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
+	<style>
+	* {
+		font-family: "Barlow", sans-serif !important;
+	}
+	body {
+		margin: 0 auto;
+		width: 1000px;
+		text-align: center;
+		background-color: rgb(255, 217, 15);
+		font-size: 2.5rem;
+	  font-family: "Playfair Display";
+		letter-spacing: 5px;
+	}
+	input {
+		height: 200px;
+		width: 500px;
+	}
+
+	.container {
+		display: grid;
+	}
+
+	textarea {
+		font-family: comic-sans;
+	}
+
+	button {
+		margin-bottom: 15px;
+	}
+
+	</style>
+</head>
+<body>
+	<main>
+			<h1>Boring Undank Text</h1>
+			<textarea autofocus id="undankText" name="undankText" cols="40" rows="8"></textarea>
+			<br>
+			<button id="dankButton"=>Dankify</button>
+	</main>
+</body>
+<script>
+	// Create the supremely dank text
+	const dankify = (text) => {
+		let dankText = '';
+		dankText += '- ';
+		dankText += text.toUpperCase().replace(/\s/g, ' - ');
+		dankText += ' -';
+		return dankText;
+	}
+
+	// Select Elements
+	const dankifyButton = document.querySelector('#dankButton');
+	const undankText = document.querySelector('#undankText');
+
+
+	// Add event listeners
+	dankifyButton.addEventListener('click', (e)=> {
+		if (undankText.value !== '') {
+			const oldDankText = document.querySelector('#dankText');
+			if (oldDankText) {
+				oldDankText.remove()
+			}
+
+			const dankText = document.createElement('textarea');
+			dankText.value = dankify(undankText.value);
+			dankText.cols=40;
+			dankText.rows=8;
+			dankText.id='dankText';
+			document.body.appendChild(dankText);
+			}
+	});
+</script>
+</html>
