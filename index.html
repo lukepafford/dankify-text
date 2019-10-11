@@ -19,6 +19,18 @@
 		letter-spacing: 5px;
 	}
 
+	textarea {
+		width: 270px;
+		height: 220px;
+	}
+
+	@media all and (min-width: 1000px) {
+		textarea {
+			width: 800px;
+			height: 400px;
+		}
+	}
+
 	button {
 		margin-bottom: 15px;
 	}
@@ -34,7 +46,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12" align="center">
-					<textarea autofocus id="undankText" name="undankText" cols="18" rows="4"></textarea>
+					<textarea autofocus id="undankText" name="undankText"></textarea>
 				</div>
 			</div>
 			<div class="row">
@@ -95,8 +107,6 @@
 
 			const dankText = document.createElement('textarea');
 			dankText.value = dankify(undankText.value);
-			dankText.cols=18;
-			dankText.rows=4;
 
 			dankColumn.appendChild(dankText);
 			dankRow.appendChild(dankColumn);
