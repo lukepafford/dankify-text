@@ -20,7 +20,7 @@
 
 	textarea {
 		width: 270px;
-		height: 180px;
+		height: 160px;
 	}
 
 	@media all and (min-width: 1000px) {
@@ -85,12 +85,13 @@
 			if (/\w/.test(char)) {
 				whitespaceCount = 0;
 				dankText += `${char.toUpperCase()} `;
-			}
-
+			} else if (/\s/.test(char) && whitespaceCount === 0) {
 			// For each space, we need a to put a dash in front
-			if (/\s/.test(char) && whitespaceCount === 0) {
 				whitespaceCount += 1
 				dankText += '- ';
+			} else if (/\W/.test(char)) {
+				whitespaceCount = 0;
+				dankText += `${char} `;
 			}
 		}
 
