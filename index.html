@@ -29,17 +29,17 @@
 		<div id="main-container" class="container">
 			<div class="row">
 				<div class="col-lg-12" align="center">
-					<h1 class="display-4">Boring Undank Text</h1>
+					<h1>Boring Undank Text</h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12" align="center">
-					<textarea autofocus id="undankText" name="undankText" cols="50" rows="5"></textarea>
+					<textarea autofocus id="undankText" name="undankText" cols="18" rows="4"></textarea>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12" align="center">
-					<button type="button" class="btn btn-primary" id="dankButton"=>Dankify</button>
+					<button type="button" class="btn btn-primary btn-large" id="dankButton"=>Dankify</button>
 				</div>
 			</div>
 		</div>
@@ -95,8 +95,8 @@
 
 			const dankText = document.createElement('textarea');
 			dankText.value = dankify(undankText.value);
-			dankText.cols=50;
-			dankText.rows=5;
+			dankText.cols=18;
+			dankText.rows=4;
 
 			dankColumn.appendChild(dankText);
 			dankRow.appendChild(dankColumn);
