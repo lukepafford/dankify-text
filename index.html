@@ -3,17 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Dankify Text</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	<style>
 	* {
 		font-family: "Barlow", sans-serif !important;
 	}
 	body {
-		margin: 0 auto;
-		width: 1000px;
-		text-align: center;
 		background-color: rgb(255, 217, 15);
 		font-size: 2.5rem;
 	  font-family: "Playfair Display";
@@ -27,10 +26,23 @@
 </head>
 <body>
 	<main>
-			<h1>Boring Undank Text</h1>
-			<textarea autofocus id="undankText" name="undankText" cols="40" rows="8"></textarea>
-			<br>
-			<button id="dankButton"=>Dankify</button>
+		<div id="main-container" class="container">
+			<div class="row">
+				<div class="col-lg-12" align="center">
+					<h1 class="display-4">Boring Undank Text</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12" align="center">
+					<textarea autofocus id="undankText" name="undankText" cols="50" rows="5"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12" align="center">
+					<button type="button" class="btn btn-primary" id="dankButton"=>Dankify</button>
+				</div>
+			</div>
+		</div>
 	</main>
 </body>
 <script>
@@ -68,18 +80,34 @@
 	// Add event listeners
 	dankifyButton.addEventListener('click', (e)=> {
 		if (undankText.value !== '') {
-			const oldDankText = document.querySelector('#dankText');
-			if (oldDankText) {
-				oldDankText.remove()
+
+			const oldDankRow = document.querySelector('#dankRow');
+			if (oldDankRow) {
+				oldDankRow.remove()
 			}
+
+			const dankRow = document.createElement('div');
+			dankRow.className = 'row';
+			dankRow.id='dankRow';
+
+			const dankColumn = document.createElement('div');
+			dankColumn.className = 'col-sm-12';
+			dankColumn.setAttribute('align', 'center');
 
 			const dankText = document.createElement('textarea');
 			dankText.value = dankify(undankText.value);
-			dankText.cols=40;
-			dankText.rows=8;
-			dankText.id='dankText';
-			document.body.appendChild(dankText);
+			dankText.cols=50;
+			dankText.rows=5;
+
+			dankColumn.appendChild(dankText);
+			dankRow.appendChild(dankColumn);
+
+			const mainContainer = document.querySelector('#main-container');
+			mainContainer.appendChild(dankRow);
 			}
 	});
 </script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>
