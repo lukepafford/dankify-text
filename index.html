@@ -107,6 +107,7 @@
 
 			const dankText = document.createElement('textarea');
 			dankText.value = dankify(undankText.value);
+			dankText.setAttribute('readonly', '');
 
 			dankColumn.appendChild(dankText);
 			dankRow.appendChild(dankColumn);
