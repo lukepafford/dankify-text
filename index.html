@@ -52,7 +52,7 @@
 		dankText += '- ';
 
 		let whitespaceCount = 0
-		for (const char of text) {
+		for (const char of text.trim()) {
 			// For each character, it should be capitalized
 			// and have a space appended to it
 			if (/\w/.test(char)) {
@@ -67,7 +67,6 @@
 			}
 		}
 
-		//dankText += text.toUpperCase().replace(/\s+/g, ' - ');
 		dankText += ' -';
 		return dankText;
 	}
