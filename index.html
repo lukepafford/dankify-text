@@ -14,17 +14,20 @@
 	}
 	body {
 		background-color: rgb(255, 217, 15);
-		font-size: 2.5rem;
 	  font-family: "Playfair Display";
 		letter-spacing: 5px;
 	}
 
 	textarea {
 		width: 270px;
-		height: 220px;
+		height: 200px;
 	}
 
 	@media all and (min-width: 1000px) {
+		body {
+			font-size: 2.5rem;
+		}
+
 		textarea {
 			width: 800px;
 			height: 400px;
@@ -50,9 +53,15 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12" align="center">
-					<button type="button" class="btn btn-primary btn-large" id="dankButton"=>Dankify</button>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3" align="center">
+					<button type="button" class="btn btn-primary " id="dankButton"=>Dankify</button>
 				</div>
+				<div class="col-sm-3" align="center">
+					<button disabled type="button" class="btn btn-primary"
+						id="clipboardButton"=>Copy To Clipboard</button>
+				</div>
+				<div class="col-sm-3"></div>
 			</div>
 		</div>
 	</main>
@@ -84,12 +93,14 @@
 	}
 
 	// Select Elements
+	const mainContainer = document.querySelector('#main-container');
 	const dankifyButton = document.querySelector('#dankButton');
 	const undankText = document.querySelector('#undankText');
+	const clipboardButton = document.querySelector('#clipboardButton');
 
 
 	// Add event listeners
-	dankifyButton.addEventListener('click', (e)=> {
+	dankifyButton.addEventListener('click', (e) => {
 		if (undankText.value !== '') {
 
 			const oldDankRow = document.querySelector('#dankRow');
@@ -107,14 +118,22 @@
 
 			const dankText = document.createElement('textarea');
 			dankText.value = dankify(undankText.value);
+			dankText.id = 'dankText';
 			dankText.setAttribute('readonly', '');
 
 			dankColumn.appendChild(dankText);
 			dankRow.appendChild(dankColumn);
-
-			const mainContainer = document.querySelector('#main-container');
 			mainContainer.appendChild(dankRow);
+
+			// Undisable the copy to clipboard button
+			clipboardButton.removeAttribute('disabled');
 			}
+	});
+
+	clipboardButton.addEventListener('click', (e) => {
+		const dankText = document.querySelector('#dankText');
+		dankText.select();
+		document.execCommand('copy');
 	});
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
